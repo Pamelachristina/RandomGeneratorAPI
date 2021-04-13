@@ -42,11 +42,10 @@ $(document).ready(function(){
      * and calls the helper functions to create cards and modals for each employee.  
      */
     function createPageLayout(employeeList){
-        for(let i = 0; i < employeeList.length; i++) {
-                createCard(employeeList);
-                createModal(employeeList);
-            }
+        createCard(employeeList);
+        createModal(employeeList);
     }
+    
 
 
     /**
