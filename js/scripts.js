@@ -42,8 +42,10 @@ $(document).ready(function(){
      * and calls the helper functions to create cards and modals for each employee.  
      */
     function createPageLayout(employeeList){
-        createCard(employeeList);
-        createModal(employeeList);
+       employeeList.forEach(employee => {
+            createCard(employee);
+            createModal(employee);
+        });
     }
     
 
@@ -73,10 +75,8 @@ $(document).ready(function(){
         </div>
     </div>`)
    }
-  
-        
-       
   }
+
 
   function createModal(employee) {
     for (let i = 0; i < employee.length; i++){
@@ -100,13 +100,21 @@ $(document).ready(function(){
   }
  }
 
-  function showModal() {
+ function showModal(employeeList) {
     $('.card').each(function() {
       $(this).click(function() {
         $(this).next().show();
       });
     });
   }
+
+  /* function shhowModal() {
+    $( '.card' ).on( "click", function() {
+        alert( $( this ).showModal() );
+      });
+    
+  } */
+  
 
   function hideModal() {
     $('.modal-close-btn').click(function() {
