@@ -2,7 +2,7 @@
 
 const gallery = document.getElementById('gallery');
 const queryURL = 'https://randomuser.me/api/?results=12&nat=us';
-const modalWindow = document.querySelector('.modal-info-container');
+const modalWindow = document.getElementsByClassName('.modal-info-container');
 const modalCloseBtn = document.getElementById('modal-close-btn');
 const modal = document.getElementById('modal');
 const card = document.querySelectorAll('.card');
@@ -63,6 +63,7 @@ fetch(queryURL)
  
 
  function generateModal(data) {
+     
      const modalWindow = data.map(item => `<div class="modal-container">
         <div class="modal">
         <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
@@ -79,6 +80,7 @@ fetch(queryURL)
             <p class="modal-text">Birthday: ${item.dob.date.slice(0, 10)}</p>
         </div>
     </div>`)
+    modal.style.display = 'none';
     gallery.insertAdjacentHTML('afterend', modalWindow);
     
  }
@@ -86,13 +88,20 @@ fetch(queryURL)
  //Event Listeners
 
 
-    card.forEach((card, i) => {
-        card.addEventListener('click', () => {
-            generateModal([i]);
+   function handleClicks (data) {
+    const card = document.querySelectorAll('.card').forEach((card, i) => {
+        card.addEventListener('click', ()=> {
+            employeeIndex = i;
+            generateModal(data[i]);
+            modalWindow.hidden = false;
         })
-    
-    })
-    
+   })
+}
+
+
+
+
+   
    
 
  
